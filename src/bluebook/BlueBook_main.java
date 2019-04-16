@@ -1238,6 +1238,7 @@ public class BlueBook_main implements  ActionListener {
         subtabPane11.setMnemonicAt(0, KeyEvent.VK_2);
         subtabPane11.addTab(PN_T1_02 , null, P1_page03, null);
         subtabPane11.setMnemonicAt(0, KeyEvent.VK_3);
+        /*
         subtabPane11.addTab(PN_T1_03 , null, P1_page04, null);
         subtabPane11.setMnemonicAt(0, KeyEvent.VK_4);
         subtabPane11.addChangeListener(new ChangeListener() {
@@ -1246,7 +1247,7 @@ public class BlueBook_main implements  ActionListener {
             	FNC_POWER_UPDATE();
         }                
         });
-        
+        */
         subtabPane11.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
         mainPanel1.add(subtabPane11);
 
@@ -8329,11 +8330,13 @@ System.out.println("" + myfile_opened);
     	}
         File file = fileChooser.getSelectedFile() ;
         String filePath = file.getAbsolutePath();
+        filePath = filePath.replaceAll(".csv", "");
             file = new File(filePath + ".csv");
     		myfile_opened = file;
             myfile_name = fileChooser.getSelectedFile().getName();
+            myfile_name = myfile_name.replaceAll(".csv", "");
             FileLabel.setText("CASE : " + myfile_name);
-            MAIN_frame.setTitle("" + PROJECT_TITLE + " | " + myfile_name.split("[.]")[0]);
+            MAIN_frame.setTitle("" + PROJECT_TITLE + " | " + myfile_name);
     	PrintWriter os;
 		try {
 			os = new PrintWriter(file);
@@ -8393,6 +8396,9 @@ System.out.println("" + myfile_opened);
         	//File myfile = myfile_opened;
         	//String filePath = myfile.getAbsolutePath();
             File file = myfile_opened ; //new File(filePath + "\\" + myfile_name);
+            String Filepath = file.getAbsolutePath(); 
+            Filepath = Filepath.replaceAll(".csv","");
+            file = new File(Filepath+".csv");
             PrintWriter os;
 			os = new PrintWriter(file);
 			String head_line = Minit.getText() + BB_delimiter + Mpayload.getText() + BB_delimiter + cd_tf1.getText() + BB_delimiter + BoilOff_TF.getText() + BB_delimiter + FuelMar_TF.getText() + BB_delimiter + cbMenuItem_BO.isSelected() + BB_delimiter + cbMenuItem_SL.isSelected() + BB_delimiter + cbMenuItem_MAR.isSelected() + BB_delimiter;   
